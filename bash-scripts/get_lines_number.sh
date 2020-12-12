@@ -1,0 +1,1 @@
+return $(wc $1 -l)
