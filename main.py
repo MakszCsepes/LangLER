@@ -1,5 +1,5 @@
 from PyQt5 import QtWidgets, QtCore, QtGui
-from PyQt5.QtWidgets import QMessageBox, QFileDialog
+from PyQt5.QtWidgets import QMessageBox, QFileDialog, QGridLayout, QSizePolicy
 
 from interface import Ui_MainWindow
 import sys
@@ -20,24 +20,24 @@ FILE_METADATA_ELEMENTS = [DICT_META_POINTER_i, DICT_NAME_i, DICT_LAST_LINE_i, DI
 
 
 class MyWindow(QtWidgets.QMainWindow):
-    dir_to_use_ = ""  # dir with dictionaries selected by user
-    dir_files_ = []  # list of files in the dir
+    _dir_to_use = ""  # dir with dictionaries selected by user
+    _dir_files = []  # list of files in the dir
 
-    opened_new_dict_ = False
-    file_to_work_name_ = ""  # text3.txt.txt
-    file_to_work_full_name_ = ""  # dir/.../text3.txt.txt
+    _b_opened_new_dict = False
+    _file_to_work_name = ""  # text3.txt.txt
+    _file_to_work_full_name = ""  # dir/.../text3.txt.txt
 
-    file_lines_ = []  # list of lines in file
-    file_lines_meta_ = {}  # metadata for lines in file
-    file_lines_index_ = INITIAL_INDEX
-    cur_line_ = ""  # current line in progress
-    lines_on_top_ = []  # lines to drop on top of the dict
+    _file_lines = []  # list of lines in file
+    _file_lines_meta = {}  # metadata for lines in file
+    _file_lines_index = INITIAL_INDEX
+    _cur_line = ""  # current line in progress
+    _lines_on_top = []  # lines to drop on top of the dict
 
-    progress_ = 0  # total progress in percentage
-    progress_step_ = 0
+    _progress = 0  # total progress in percentage
+    _progress_step = 0
 
     # dropbox with files in the dir
-    comboBox_ToLearn_current_index_ = 0
+    _comboBox_ToLearn_current_index = 0
 
     def __init__(self):
         super(MyWindow, self).__init__()
@@ -70,6 +70,9 @@ class MyWindow(QtWidgets.QMainWindow):
         # ComboBox organized
         self.ui.comboBox_ToLearn.currentIndexChanged.connect(self.change_apply_button)
 
+        # Set an Image
+        self.set_image("resources/asset.jpg")
+
         self.ui.pushButton_apply.setEnabled(False)
         self.ui.pushButton_apply.setToolTip("changes the file to read")
         self.ui.Text_towrite.hide()
@@ -83,30 +86,28 @@ class MyWindow(QtWidgets.QMainWindow):
 
     def browse(self):
         # clear list of files in directory
-        self.dir_files_.clear()
+        self._dir_files.clear()
 
         # select new dir
         dir_to_use = QFileDialog.getExistingDirectory(self, "select directory")
 
         if dir_to_use:
             self.ui.comboBox_ToLearn.clear()
-            self.dir_to_use_ = dir_to_use
+            self._dir_to_use = dir_to_use
 
             # display directory name on label
-            dir_path_list = self.dir_to_use_.split('/')
+            dir_path_list = self._dir_to_use.split('/')
             self.ui.label_dirname.setText(str(dir_path_list[-1]))
 
             # generate list of files in directory
             for filename in os.listdir(dir_to_use):
-                self.dir_files_.append(filename)
+                self._dir_files.append(filename)
 
                 filename = filename.split(".")
                 self.ui.comboBox_ToLearn.addItem(filename[0])
 
     def apply(self):
-        self.comboBox_ToLearn_current_index_ = self.ui.comboBox_ToLearn.currentIndex()
-
-        self.change_dict(self.dir_files_[self.comboBox_ToLearn_current_index_])
+        self.change_dict(self._dir_files[self.ui.comboBox_ToLearn.currentIndex()])
 
         # disable apply button
         self.ui.pushButton_apply.setEnabled(False)
@@ -114,116 +115,134 @@ class MyWindow(QtWidgets.QMainWindow):
     # clears class variables such as lists, strings, arrays
     # to get ready for new dict data
     def clear_dict_variables(self):
-        self.file_lines_.clear()
-        self.file_lines_meta_.clear()
-        self.file_lines_index_ = INITIAL_INDEX
-        self.cur_line_ = ""
-        self.lines_on_top_.clear()
+        self._file_lines.clear()
+        self._file_lines_meta.clear()
+        self._file_lines_index = INITIAL_INDEX
+        self._cur_line = ""
+        self._lines_on_top.clear()
 
-        self.progress_ = 0
-        self.progress_step_ = 0
+        self._progress = 0
+        self._progress_step = 0
 
     def define_progress(self):
         # set progressBar to zero
-        self.progress_step_ = 0
-        self.progress_ = 0
-        self.ui.progressBar.setValue(self.progress_)
+        self._progress_step = 0
+        self._progress = 0
+        self.ui.progressBar.setValue(self._progress)
 
-        file_lines_length = len(self.file_lines_)
+        file_lines_length = len(self._file_lines)
         if file_lines_length != 0:
-            self.progress_step_ = 100 / file_lines_length
+            self._progress_step = 100 / file_lines_length
 
-        if self.file_lines_index_ != INITIAL_INDEX:
-            self.progress_ = self.progress_step_*(self.file_lines_index_ + 1)
-            self.ui.progressBar.setValue(self.progress_)
+        if self._file_lines_index != INITIAL_INDEX:
+            self._progress = self._progress_step * (self._file_lines_index + 1)
+            self.ui.progressBar.setValue(self._progress)
 
     def change_dict(self, filename):
-        if self.opened_new_dict_:
-            self.save_current_dict(self.file_to_work_full_name_)
+        if self._b_opened_new_dict:
+            self.save_current_dict(self._file_to_work_full_name)
 
-        self.file_to_work_name_ = filename
-        self.file_to_work_full_name_ = self.dir_to_use_ + "/" + self.file_to_work_name_
+        self._file_to_work_name = filename
+        self._file_to_work_full_name = self._dir_to_use + "/" + self._file_to_work_name
 
-        self.open_new_dict(self.file_to_work_full_name_)
+        self.open_new_dict(self._file_to_work_full_name)
 
         # display number of elements in the file
-        self.ui.label_words_number.setText(str(len(self.file_lines_)))
+        self.ui.label_words_number.setText(str(len(self._file_lines)))
 
         # display the last position
         label_text = self.ui.label_last_position.text()
-        label_text += str(self.file_lines_meta_[DICT_LAST_LINE_i])
+        label_text += str(self._file_lines_meta[DICT_LAST_LINE_i])
         self.ui.label_last_position.setText(label_text)
 
         # display word and a relevant translation
-        self.cur_line_ = self.file_lines_[self.file_lines_index_]
+        self._cur_line = self._file_lines[self._file_lines_index]
         self.display_word_line()
 
         self.define_progress()
 
     def open_new_dict(self, filename):
         with open(filename, "r", encoding="utf-8") as file_to_use_:
-            self.file_lines_index_ = INITIAL_INDEX
-            self.file_lines_ = file_to_use_.readlines()
+            self._file_lines_index = INITIAL_INDEX
+            self._file_lines = file_to_use_.readlines()
 
             self.get_dict_metadata()
-            self.file_lines_index_ = self.file_lines_meta_[DICT_LAST_LINE_i]
+            self._file_lines_index = self._file_lines_meta[DICT_LAST_LINE_i]
 
             self.remove_elements_from_list()
 
-            self.opened_new_dict_ = True
+            self._b_opened_new_dict = True
 
     def save_current_dict(self, filename):
         self.save_on_top_elements()
 
+        # place metadata (e.g dictname, separator, current position e.t.c)
+        # onto the very first line of the file
         self.save_dict_metadata()
 
         with open(filename, "w", encoding="utf-8") as file_to_use_:
-            file_to_use_.writelines(self.file_lines_)
+            file_to_use_.writelines(self._file_lines)
 
-        self.opened_new_dict_ = False
+        self._b_opened_new_dict = False
         self.clear_dict_variables()
 
     def get_dict_metadata(self):
-        line = self.file_lines_[0]
+        line = self._file_lines[0]
         splitted_line = line.split()
 
         for i in FILE_METADATA_ELEMENTS:
             if i == DICT_NAME_i:
-                self.file_lines_meta_[DICT_NAME_i] = splitted_line[i]
+                self._file_lines_meta[DICT_NAME_i] = splitted_line[i]
             elif i == DICT_LAST_LINE_i and splitted_line[i].isdigit():
-                self.file_lines_meta_[DICT_LAST_LINE_i] = int(splitted_line[i])
+                self._file_lines_meta[DICT_LAST_LINE_i] = int(splitted_line[i])
             elif i == DICT_SEPARATOR_i:
-                self.file_lines_meta_[DICT_SEPARATOR_i] = splitted_line[i]
+                self._file_lines_meta[DICT_SEPARATOR_i] = splitted_line[i]
             elif i == DICT_META_POINTER_i:
-                self.file_lines_meta_[DICT_META_POINTER_i] = splitted_line[i]
+                self._file_lines_meta[DICT_META_POINTER_i] = splitted_line[i]
 
     def save_dict_metadata(self):
         # save last (current) position in dict
-        self.file_lines_meta_[DICT_LAST_LINE_i] = self.file_lines_index_
+        self._file_lines_meta[DICT_LAST_LINE_i] = self._file_lines_index
 
         # generate string with metadata
-        metadata_str = str(self.file_lines_meta_[DICT_META_POINTER_i])
-        for i in self.file_lines_meta_:
-            if str(self.file_lines_meta_[i]) != str(self.file_lines_meta_[DICT_META_POINTER_i]):
-                metadata_str += ' ' + str(self.file_lines_meta_[i])
+        metadata_str = str(self._file_lines_meta[DICT_META_POINTER_i])
+        for i in self._file_lines_meta:
+            if str(self._file_lines_meta[i]) != str(self._file_lines_meta[DICT_META_POINTER_i]):
+                metadata_str += ' ' + str(self._file_lines_meta[i])
         metadata_str += '\n'
 
         # push the string onto the top of the list (that is aka dict)
-        self.file_lines_.insert(0, metadata_str)
+        self._file_lines.insert(0, metadata_str)
 
     def save_on_top_elements(self):
-        # push each on_top element onto the beginning of the list (that is aka dict)
-        for on_top_elem in self.lines_on_top_:
-            self.file_lines_.remove(on_top_elem)
-            self.file_lines_.insert(0, on_top_elem)
+        cur_line = self._cur_line
+
+        # there is no need to save the very last line
+        # because it will definitely be the first line to appear next time
+        # so it's implicitly saved
+        if cur_line in self._lines_on_top:
+            self._lines_on_top.remove(cur_line)
+
+        # cut off on_top elements from the list
+        for on_top_elem in self._lines_on_top:
+            self._file_lines.remove(on_top_elem)
+
+
+        cur_line_index = self._file_lines.index(cur_line)
+        # push each on_top element onto the beginning of the list (aka dict)
+        for on_top_elem in self._lines_on_top:
+            self._file_lines.insert(cur_line_index + 1, on_top_elem)
+
+        self._file_lines_index = cur_line_index
 
     def push_on_top(self):
-        self.lines_on_top_.insert(0, self.cur_line_)
+        if self._cur_line not in self._lines_on_top:
+            self._lines_on_top.insert(0, self._cur_line)
 
     def remove_elements_from_list(self):
-        for line in self.file_lines_:
+        for line in self._file_lines:
             if '#' in line:
-                self.file_lines_.remove(line)
+                self._file_lines.remove(line)
 
     # button groups
     def change_text_in_write_page(self):
@@ -234,21 +253,21 @@ class MyWindow(QtWidgets.QMainWindow):
 
     def select_beginning_position(self):
         if self.ui.radio_from_the_beginning.isChecked():
-            self.file_lines_index_ = INITIAL_INDEX
+            self._file_lines_index = INITIAL_INDEX
         elif self.ui.radio_from_saved_position.isChecked():
-            self.file_lines_index_ = self.file_lines_meta_[DICT_LAST_LINE_i]
+            self._file_lines_index = self._file_lines_meta[DICT_LAST_LINE_i]
 
         self.update_word_display()
         self.define_progress()
 
     def change_apply_button(self):
-        if self.comboBox_ToLearn_current_index_ == self.ui.comboBox_ToLearn.currentIndex():
+        if self._comboBox_ToLearn_current_index == self.ui.comboBox_ToLearn.currentIndex():
             self.ui.pushButton_apply.setEnabled(False)
         else:
             self.ui.pushButton_apply.setEnabled(True)
 
     def write_word(self):
-        file_to_write_into = open("languages/" + self.file_to_work_name_.lower() + ".txt", 'a', encoding="utf-8")
+        file_to_write_into = open("languages/" + self._file_to_work_name.lower() + ".txt", 'a', encoding="utf-8")
 
         if self.ui.radioOneWord_towrite.isChecked():
             line_in_file = self.ui.lineEdit_word_towrite.text() + "-" + self.ui.lineEdit_translation_towrite.text() + ";\n"
@@ -266,6 +285,10 @@ class MyWindow(QtWidgets.QMainWindow):
 
         file_to_write_into.close()
 
+    def set_image(self, image_filename):
+        self.ui.label_Image.setPixmap(QtGui.QPixmap(image_filename))
+        self.ui.label_Image.setScaledContents(True)
+
     # display current word and translation
     # according to checkBox
     def display_word_line(self):
@@ -274,7 +297,9 @@ class MyWindow(QtWidgets.QMainWindow):
         if self.ui.checkBox_Word.isChecked():
             self.get_word_btn()
 
-        self.ui.label_current_index.setText(str(self.file_lines_index_ + 1))
+        self.get_image()
+
+        self.ui.label_current_index.setText(str(self._file_lines_index + 1))
 
     # according to lines_index display appropriate/relevant word
     def update_word_display(self):
@@ -282,10 +307,10 @@ class MyWindow(QtWidgets.QMainWindow):
         self.ui.lineEdit_word.clear()
         self.ui.lineEdit_translation.clear()
 
-        line = self.file_lines_[self.file_lines_index_]
+        line = self._file_lines[self._file_lines_index]
 
         if line is not None and len(line) != 0:
-            self.cur_line_ = line
+            self._cur_line = line
 
         self.display_word_line()
 
@@ -294,21 +319,21 @@ class MyWindow(QtWidgets.QMainWindow):
         self.ui.lineEdit_word.clear()
         self.ui.lineEdit_translation.clear()
 
-        # get out if index is out of the list range
-        if self.file_lines_index_ + 1 > len(self.file_lines_):
-            return
+        # go back on top if index is out of the list range
+        if self._file_lines_index + 1 >= len(self._file_lines):
+            self._file_lines_index = -1
 
-        line = self.file_lines_[self.file_lines_index_ + 1]
+        line = self._file_lines[self._file_lines_index + 1]
 
         if line is not None and len(line) != 0:
-            self.cur_line_ = line
-            self.file_lines_index_ += 1
+            self._cur_line = line
+            self._file_lines_index += 1
 
             self.display_word_line()
 
         # increase value of progress bar
-        self.progress_ += self.progress_step_
-        self.ui.progressBar.setValue(self.progress_)
+        self._progress += self._progress_step
+        self.ui.progressBar.setValue(self._progress)
 
     def get_prev_word(self):
         # clear word and translation lineEdits
@@ -316,41 +341,53 @@ class MyWindow(QtWidgets.QMainWindow):
         self.ui.lineEdit_translation.clear()
 
         # get out if index is out of the list range
-        if self.file_lines_index_ - 1 < 0:
+        if self._file_lines_index - 1 < 0:
             return
 
-        line = self.file_lines_[self.file_lines_index_ - 1]
+        line = self._file_lines[self._file_lines_index - 1]
 
         if line is not None and len(line) != 0:
-            self.cur_line_ = line
-            self.file_lines_index_ -= 1
+            self._cur_line = line
+            self._file_lines_index -= 1
 
             self.display_word_line()
 
         # decrease value of progress bar
-        self.progress_ -= self.progress_step_
-        self.ui.progressBar.setValue(self.progress_)
+        self._progress -= self._progress_step
+        self.ui.progressBar.setValue(self._progress)
 
     def get_word_btn(self):
-        if len(self.cur_line_) != 0:
-            origin_word = get_word_from_line(self.cur_line_)
+        if len(self._cur_line) != 0:
+            origin_word = get_word_from_line(self._cur_line)
 
             self.ui.lineEdit_word.setText(origin_word)
 
     def get_translation_btn(self):
-        if len(self.cur_line_) != 0:
-            translation = get_translation_from_line(self.cur_line_, [self.file_lines_meta_[DICT_SEPARATOR_i]])
+        if len(self._cur_line) != 0:
+            translation = get_translation_from_line(self._cur_line, [self._file_lines_meta[DICT_SEPARATOR_i]])
 
             self.ui.lineEdit_translation.setText(translation)
 
+    def get_image(self):
+        if len(self._cur_line) != 0:
+            image = get_image_from_line(self._cur_line, [self._file_lines_meta[DICT_SEPARATOR_i], '\n'])
+
+            if len(image) != 0:
+                self.ui.label_Image.setPixmap(QtGui.QPixmap("resources/" + image))
+                self.ui.label_Image.setScaledContents(True)
+
     def exit(self):
-        self.save_current_dict(self.file_to_work_full_name_)
+        self.save_current_dict(self._file_to_work_full_name)
         sys.exit()
 
 
-app = QtWidgets.QApplication([])
-application = MyWindow()
-application.show()
+def main():
+    app = QtWidgets.QApplication([])
+    application = MyWindow()
+    application.show()
 
-sys.exit(app.exec())
+    sys.exit(app.exec())
+
+
+main()
 

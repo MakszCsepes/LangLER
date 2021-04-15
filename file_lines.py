@@ -39,8 +39,7 @@ def write_into_file(filename, index, data):
 # LINES
 
 def get_word_from_line(line):
-    return line.split(DELIMITER, 2)[0]
-
+    return line.split(DELIMITER, 3)[0]
 
 def get_translation_from_line(line, char_to_replace=[]):
     translation = line.split(DELIMITER, 2)[1]
@@ -49,8 +48,17 @@ def get_translation_from_line(line, char_to_replace=[]):
         translation = translation.replace(i, ' ')
     return translation
 
+def get_image_from_line(line, char_to_replace=[]):
+    splitted_line = line.split(DELIMITER, 3)
+    image = ""
 
-get_translation_from_line("4-4;\n", ';')
+    if len(splitted_line) == 3:
+        image = splitted_line[2]
+
+        for i in char_to_replace:
+            image = image.replace(i, '')
+
+    return image
 
 def get_number_of_lines_in_file(filename):
     with open(filename, 'r') as f:

@@ -42,70 +42,6 @@
      <attribute name="title">
       <string>LEARN</string>
      </attribute>
-     <widget class="QPushButton" name="pushButton_get_new_word">
-      <property name="geometry">
-       <rect>
-        <x>370</x>
-        <y>30</y>
-        <width>181</width>
-        <height>41</height>
-       </rect>
-      </property>
-      <property name="cursor">
-       <cursorShape>OpenHandCursor</cursorShape>
-      </property>
-      <property name="toolTip">
-       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-      </property>
-      <property name="whatsThis">
-       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;lll&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-      </property>
-      <property name="accessibleDescription">
-       <string/>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">background-color: rgb(238, 238, 236);
-font: 57 14pt &quot;Ubuntu&quot;;
-font-weight: bold;
-color: rgb(136, 138, 133);
-
-QPushButton::hover {
-	color: rgb(254, 0, 0);
-}</string>
-      </property>
-      <property name="text">
-       <string>Get a new word</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="pushButton_prev_word">
-      <property name="geometry">
-       <rect>
-        <x>370</x>
-        <y>220</y>
-        <width>181</width>
-        <height>41</height>
-       </rect>
-      </property>
-      <property name="cursor">
-       <cursorShape>OpenHandCursor</cursorShape>
-      </property>
-      <property name="accessibleDescription">
-       <string/>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">background-color: rgb(238, 238, 236);
-font: 57 14pt &quot;Ubuntu&quot;;
-font-weight: bold;
-color: rgb(136, 138, 133);
-
-QPushButton::hover {
-	color: rgb(254, 0, 0);
-}</string>
-      </property>
-      <property name="text">
-       <string>Previous word</string>
-      </property>
-     </widget>
      <widget class="QLabel" name="label">
       <property name="geometry">
        <rect>
@@ -126,7 +62,7 @@ QPushButton::hover {
       <property name="geometry">
        <rect>
         <x>30</x>
-        <y>150</y>
+        <y>190</y>
         <width>881</width>
         <height>71</height>
        </rect>
@@ -397,8 +333,8 @@ QPushButton::hover {
      <widget class="QPushButton" name="pushButton_browse">
       <property name="geometry">
        <rect>
-        <x>580</x>
-        <y>30</y>
+        <x>590</x>
+        <y>10</y>
         <width>131</width>
         <height>41</height>
        </rect>
@@ -429,23 +365,74 @@ QPushButton::hover {
        <string>Browse</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton_on_top">
+     <widget class="QLabel" name="label_Image">
       <property name="geometry">
        <rect>
         <x>30</x>
-        <y>220</y>
-        <width>191</width>
-        <height>31</height>
+        <y>20</y>
+        <width>271</width>
+        <height>151</height>
        </rect>
       </property>
-      <property name="cursor">
-       <cursorShape>OpenHandCursor</cursorShape>
-      </property>
-      <property name="accessibleDescription">
+      <property name="text">
        <string/>
       </property>
-      <property name="styleSheet">
-       <string notr="true">background-color: rgb(46, 52, 54);
+      <property name="pixmap">
+       <pixmap>../../../Загрузки/greedy.jpg</pixmap>
+      </property>
+      <property name="scaledContents">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QWidget" name="verticalLayoutWidget_5">
+      <property name="geometry">
+       <rect>
+        <x>340</x>
+        <y>10</y>
+        <width>231</width>
+        <height>161</height>
+       </rect>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_4">
+       <item>
+        <widget class="QPushButton" name="pushButton_get_new_word">
+         <property name="cursor">
+          <cursorShape>OpenHandCursor</cursorShape>
+         </property>
+         <property name="toolTip">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+         <property name="whatsThis">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;lll&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+         <property name="accessibleDescription">
+          <string/>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(238, 238, 236);
+font: 57 14pt &quot;Ubuntu&quot;;
+font-weight: bold;
+color: rgb(136, 138, 133);
+
+QPushButton::hover {
+	color: rgb(254, 0, 0);
+}</string>
+         </property>
+         <property name="text">
+          <string>Get a new word</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="pushButton_on_top">
+         <property name="cursor">
+          <cursorShape>OpenHandCursor</cursorShape>
+         </property>
+         <property name="accessibleDescription">
+          <string/>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(46, 52, 54);
 color: rgb(233, 185, 110);
 font: 50 13pt &quot;Ubuntu&quot;;
 font-weight: bold;
@@ -453,10 +440,36 @@ font-weight: bold;
 pushButton_get_word::hover {
 	color: rgb(254, 0, 0);
 }</string>
-      </property>
-      <property name="text">
-       <string>On top</string>
-      </property>
+         </property>
+         <property name="text">
+          <string>On top</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="pushButton_prev_word">
+         <property name="cursor">
+          <cursorShape>OpenHandCursor</cursorShape>
+         </property>
+         <property name="accessibleDescription">
+          <string/>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(238, 238, 236);
+font: 57 14pt &quot;Ubuntu&quot;;
+font-weight: bold;
+color: rgb(136, 138, 133);
+
+QPushButton::hover {
+	color: rgb(254, 0, 0);
+}</string>
+         </property>
+         <property name="text">
+          <string>Previous word</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
      </widget>
     </widget>
     <widget class="QWidget" name="tab_2">
@@ -1010,7 +1023,7 @@ text-align: center;</string>
   </connection>
  </connections>
  <buttongroups>
-  <buttongroup name="buttonGroup_select_position"/>
   <buttongroup name="buttonGroup_writeMode"/>
+  <buttongroup name="buttonGroup_select_position"/>
  </buttongroups>
 </ui>

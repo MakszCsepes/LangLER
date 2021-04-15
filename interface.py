@@ -26,39 +26,13 @@ class Ui_MainWindow(object):
         self.tab = QtWidgets.QWidget()
         self.tab.setEnabled(True)
         self.tab.setObjectName("tab")
-        self.pushButton_get_new_word = QtWidgets.QPushButton(self.tab)
-        self.pushButton_get_new_word.setGeometry(QtCore.QRect(370, 30, 181, 41))
-        self.pushButton_get_new_word.setCursor(QtGui.QCursor(QtCore.Qt.OpenHandCursor))
-        self.pushButton_get_new_word.setAccessibleDescription("")
-        self.pushButton_get_new_word.setStyleSheet("background-color: rgb(238, 238, 236);\n"
-"font: 57 14pt \"Ubuntu\";\n"
-"font-weight: bold;\n"
-"color: rgb(136, 138, 133);\n"
-"\n"
-"QPushButton::hover {\n"
-"    color: rgb(254, 0, 0);\n"
-"}")
-        self.pushButton_get_new_word.setObjectName("pushButton_get_new_word")
-        self.pushButton_prev_word = QtWidgets.QPushButton(self.tab)
-        self.pushButton_prev_word.setGeometry(QtCore.QRect(370, 220, 181, 41))
-        self.pushButton_prev_word.setCursor(QtGui.QCursor(QtCore.Qt.OpenHandCursor))
-        self.pushButton_prev_word.setAccessibleDescription("")
-        self.pushButton_prev_word.setStyleSheet("background-color: rgb(238, 238, 236);\n"
-"font: 57 14pt \"Ubuntu\";\n"
-"font-weight: bold;\n"
-"color: rgb(136, 138, 133);\n"
-"\n"
-"QPushButton::hover {\n"
-"    color: rgb(254, 0, 0);\n"
-"}")
-        self.pushButton_prev_word.setObjectName("pushButton_prev_word")
         self.label = QtWidgets.QLabel(self.tab)
         self.label.setGeometry(QtCore.QRect(450, 160, 67, 17))
         self.label.setText("")
         self.label.setScaledContents(True)
         self.label.setObjectName("label")
         self.horizontalLayoutWidget_2 = QtWidgets.QWidget(self.tab)
-        self.horizontalLayoutWidget_2.setGeometry(QtCore.QRect(30, 150, 881, 71))
+        self.horizontalLayoutWidget_2.setGeometry(QtCore.QRect(30, 190, 881, 71))
         self.horizontalLayoutWidget_2.setObjectName("horizontalLayoutWidget_2")
         self.horizontalLayout_Words = QtWidgets.QHBoxLayout(self.horizontalLayoutWidget_2)
         self.horizontalLayout_Words.setContentsMargins(0, 0, 0, 0)
@@ -205,7 +179,7 @@ class Ui_MainWindow(object):
         self.pushButton_clear_translation.setObjectName("pushButton_clear_translation")
         self.gridLayout.addWidget(self.pushButton_clear_translation, 1, 1, 1, 1)
         self.pushButton_browse = QtWidgets.QPushButton(self.tab)
-        self.pushButton_browse.setGeometry(QtCore.QRect(580, 30, 131, 41))
+        self.pushButton_browse.setGeometry(QtCore.QRect(590, 10, 131, 41))
         self.pushButton_browse.setCursor(QtGui.QCursor(QtCore.Qt.OpenHandCursor))
         self.pushButton_browse.setAccessibleDescription("")
         self.pushButton_browse.setStyleSheet("background-color: rgb(238, 238, 236);\n"
@@ -217,8 +191,32 @@ class Ui_MainWindow(object):
 "    color: rgb(254, 0, 0);\n"
 "}")
         self.pushButton_browse.setObjectName("pushButton_browse")
-        self.pushButton_on_top = QtWidgets.QPushButton(self.tab)
-        self.pushButton_on_top.setGeometry(QtCore.QRect(30, 220, 191, 31))
+        self.label_Image = QtWidgets.QLabel(self.tab)
+        self.label_Image.setGeometry(QtCore.QRect(30, 20, 271, 151))
+        self.label_Image.setText("")
+        self.label_Image.setPixmap(QtGui.QPixmap("../../../Загрузки/greedy.jpg"))
+        self.label_Image.setScaledContents(True)
+        self.label_Image.setObjectName("label_Image")
+        self.verticalLayoutWidget_5 = QtWidgets.QWidget(self.tab)
+        self.verticalLayoutWidget_5.setGeometry(QtCore.QRect(340, 10, 231, 161))
+        self.verticalLayoutWidget_5.setObjectName("verticalLayoutWidget_5")
+        self.verticalLayout_4 = QtWidgets.QVBoxLayout(self.verticalLayoutWidget_5)
+        self.verticalLayout_4.setContentsMargins(0, 0, 0, 0)
+        self.verticalLayout_4.setObjectName("verticalLayout_4")
+        self.pushButton_get_new_word = QtWidgets.QPushButton(self.verticalLayoutWidget_5)
+        self.pushButton_get_new_word.setCursor(QtGui.QCursor(QtCore.Qt.OpenHandCursor))
+        self.pushButton_get_new_word.setAccessibleDescription("")
+        self.pushButton_get_new_word.setStyleSheet("background-color: rgb(238, 238, 236);\n"
+"font: 57 14pt \"Ubuntu\";\n"
+"font-weight: bold;\n"
+"color: rgb(136, 138, 133);\n"
+"\n"
+"QPushButton::hover {\n"
+"    color: rgb(254, 0, 0);\n"
+"}")
+        self.pushButton_get_new_word.setObjectName("pushButton_get_new_word")
+        self.verticalLayout_4.addWidget(self.pushButton_get_new_word)
+        self.pushButton_on_top = QtWidgets.QPushButton(self.verticalLayoutWidget_5)
         self.pushButton_on_top.setCursor(QtGui.QCursor(QtCore.Qt.OpenHandCursor))
         self.pushButton_on_top.setAccessibleDescription("")
         self.pushButton_on_top.setStyleSheet("background-color: rgb(46, 52, 54);\n"
@@ -230,6 +228,20 @@ class Ui_MainWindow(object):
 "    color: rgb(254, 0, 0);\n"
 "}")
         self.pushButton_on_top.setObjectName("pushButton_on_top")
+        self.verticalLayout_4.addWidget(self.pushButton_on_top)
+        self.pushButton_prev_word = QtWidgets.QPushButton(self.verticalLayoutWidget_5)
+        self.pushButton_prev_word.setCursor(QtGui.QCursor(QtCore.Qt.OpenHandCursor))
+        self.pushButton_prev_word.setAccessibleDescription("")
+        self.pushButton_prev_word.setStyleSheet("background-color: rgb(238, 238, 236);\n"
+"font: 57 14pt \"Ubuntu\";\n"
+"font-weight: bold;\n"
+"color: rgb(136, 138, 133);\n"
+"\n"
+"QPushButton::hover {\n"
+"    color: rgb(254, 0, 0);\n"
+"}")
+        self.pushButton_prev_word.setObjectName("pushButton_prev_word")
+        self.verticalLayout_4.addWidget(self.pushButton_prev_word)
         self.tabWidget.addTab(self.tab, "")
         self.tab_2 = QtWidgets.QWidget()
         self.tab_2.setObjectName("tab_2")
@@ -399,10 +411,6 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
-        self.pushButton_get_new_word.setToolTip(_translate("MainWindow", "<html><head/><body><p><br/></p></body></html>"))
-        self.pushButton_get_new_word.setWhatsThis(_translate("MainWindow", "<html><head/><body><p>lll</p></body></html>"))
-        self.pushButton_get_new_word.setText(_translate("MainWindow", "Get a new word"))
-        self.pushButton_prev_word.setText(_translate("MainWindow", "Previous word"))
         self.label_dirname.setText(_translate("MainWindow", "Directory"))
         self.comboBox_ToLearn.setItemText(0, _translate("MainWindow", "terms"))
         self.comboBox_ToLearn.setItemText(1, _translate("MainWindow", "dates"))
@@ -416,7 +424,11 @@ class Ui_MainWindow(object):
         self.pushButton_browse.setToolTip(_translate("MainWindow", "<html><head/><body><p><br/></p></body></html>"))
         self.pushButton_browse.setWhatsThis(_translate("MainWindow", "<html><head/><body><p>lll</p></body></html>"))
         self.pushButton_browse.setText(_translate("MainWindow", "Browse"))
+        self.pushButton_get_new_word.setToolTip(_translate("MainWindow", "<html><head/><body><p><br/></p></body></html>"))
+        self.pushButton_get_new_word.setWhatsThis(_translate("MainWindow", "<html><head/><body><p>lll</p></body></html>"))
+        self.pushButton_get_new_word.setText(_translate("MainWindow", "Get a new word"))
         self.pushButton_on_top.setText(_translate("MainWindow", "On top"))
+        self.pushButton_prev_word.setText(_translate("MainWindow", "Previous word"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), _translate("MainWindow", "LEARN"))
         self.pushButton_write.setText(_translate("MainWindow", "Записать слово"))
         self.label_writeTip.setText(_translate("MainWindow", "Words are supposed to be : word-translation"))
