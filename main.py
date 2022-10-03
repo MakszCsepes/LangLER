@@ -18,6 +18,12 @@ DICT_LAST_LINE_i = 2
 DICT_SEPARATOR_i = 3
 FILE_METADATA_ELEMENTS = [DICT_META_POINTER_i, DICT_NAME_i, DICT_LAST_LINE_i, DICT_SEPARATOR_i]
 
+# remove all items of ListToRemove from ListSource
+def cut_off_list_from_list(ListSource, ListToRemove):
+    for elem in ListToRemove:
+        if elem in ListSource:
+            ListSource.remove(elem)
+
 
 class MyWindow(QtWidgets.QMainWindow):
     _dir_to_use = ""  # dir with dictionaries selected by user
