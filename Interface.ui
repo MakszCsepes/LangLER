@@ -24,9 +24,9 @@
     <property name="geometry">
      <rect>
       <x>30</x>
-      <y>90</y>
+      <y>40</y>
       <width>941</width>
-      <height>451</height>
+      <height>561</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -61,8 +61,8 @@
      <widget class="QWidget" name="horizontalLayoutWidget_2">
       <property name="geometry">
        <rect>
-        <x>30</x>
-        <y>190</y>
+        <x>40</x>
+        <y>270</y>
         <width>881</width>
         <height>71</height>
        </rect>
@@ -106,12 +106,41 @@ height: 25%</string>
       <property name="geometry">
        <rect>
         <x>740</x>
-        <y>10</y>
+        <y>20</y>
         <width>171</width>
-        <height>138</height>
+        <height>170</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout_3">
+       <item>
+        <widget class="QPushButton" name="pushButton_browse">
+         <property name="cursor">
+          <cursorShape>OpenHandCursor</cursorShape>
+         </property>
+         <property name="toolTip">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+         <property name="whatsThis">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;lll&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+         <property name="accessibleDescription">
+          <string/>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(238, 238, 236);
+font: 57 12pt &quot;Ubuntu&quot;;
+font-weight: bold;
+color: rgb(136, 138, 133);
+
+QPushButton::hover {
+	color: rgb(254, 0, 0);
+}</string>
+         </property>
+         <property name="text">
+          <string>Browse</string>
+         </property>
+        </widget>
+       </item>
        <item>
         <widget class="QLabel" name="label_dirname">
          <property name="text">
@@ -227,8 +256,8 @@ pushButton_get_word::hover {
      <widget class="QWidget" name="gridLayoutWidget">
       <property name="geometry">
        <rect>
-        <x>30</x>
-        <y>269</y>
+        <x>40</x>
+        <y>350</y>
         <width>881</width>
         <height>111</height>
        </rect>
@@ -330,49 +359,18 @@ QPushButton::hover {
        </item>
       </layout>
      </widget>
-     <widget class="QPushButton" name="pushButton_browse">
-      <property name="geometry">
-       <rect>
-        <x>590</x>
-        <y>10</y>
-        <width>131</width>
-        <height>41</height>
-       </rect>
-      </property>
-      <property name="cursor">
-       <cursorShape>OpenHandCursor</cursorShape>
-      </property>
-      <property name="toolTip">
-       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-      </property>
-      <property name="whatsThis">
-       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;lll&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-      </property>
-      <property name="accessibleDescription">
-       <string/>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">background-color: rgb(238, 238, 236);
-font: 57 12pt &quot;Ubuntu&quot;;
-font-weight: bold;
-color: rgb(136, 138, 133);
-
-QPushButton::hover {
-	color: rgb(254, 0, 0);
-}</string>
-      </property>
-      <property name="text">
-       <string>Browse</string>
-      </property>
-     </widget>
      <widget class="QLabel" name="label_Image">
       <property name="geometry">
        <rect>
-        <x>30</x>
+        <x>50</x>
         <y>20</y>
-        <width>271</width>
-        <height>151</height>
+        <width>401</width>
+        <height>231</height>
        </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border: 2px red solid;
+</string>
       </property>
       <property name="text">
        <string/>
@@ -387,10 +385,10 @@ QPushButton::hover {
      <widget class="QWidget" name="verticalLayoutWidget_5">
       <property name="geometry">
        <rect>
-        <x>340</x>
-        <y>10</y>
+        <x>490</x>
+        <y>20</y>
         <width>231</width>
-        <height>161</height>
+        <height>171</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout_4">
@@ -424,15 +422,17 @@ QPushButton::hover {
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="pushButton_on_top">
-         <property name="cursor">
-          <cursorShape>OpenHandCursor</cursorShape>
-         </property>
-         <property name="accessibleDescription">
-          <string/>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">background-color: rgb(46, 52, 54);
+        <layout class="QHBoxLayout" name="horizontalLayout_2">
+         <item>
+          <widget class="QPushButton" name="pushButton_on_top">
+           <property name="cursor">
+            <cursorShape>OpenHandCursor</cursorShape>
+           </property>
+           <property name="accessibleDescription">
+            <string/>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">background-color: rgb(46, 52, 54);
 color: rgb(233, 185, 110);
 font: 50 13pt &quot;Ubuntu&quot;;
 font-weight: bold;
@@ -440,11 +440,36 @@ font-weight: bold;
 pushButton_get_word::hover {
 	color: rgb(254, 0, 0);
 }</string>
-         </property>
-         <property name="text">
-          <string>On top</string>
-         </property>
-        </widget>
+           </property>
+           <property name="text">
+            <string>On top</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="pushButton_save">
+           <property name="cursor">
+            <cursorShape>OpenHandCursor</cursorShape>
+           </property>
+           <property name="accessibleDescription">
+            <string/>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">background-color: rgb(46, 52, 54);
+color: rgb(233, 185, 110);
+font: 50 13pt &quot;Ubuntu&quot;;
+font-weight: bold;
+
+pushButton_get_word::hover {
+	color: rgb(254, 0, 0);
+}</string>
+           </property>
+           <property name="text">
+            <string>Save</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
        </item>
        <item>
         <widget class="QPushButton" name="pushButton_prev_word">
@@ -470,6 +495,23 @@ QPushButton::hover {
         </widget>
        </item>
       </layout>
+     </widget>
+     <widget class="QPushButton" name="pushButton_exit">
+      <property name="geometry">
+       <rect>
+        <x>780</x>
+        <y>470</y>
+        <width>131</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(0, 0, 0);
+font-size: 20px;</string>
+      </property>
+      <property name="text">
+       <string>Exit</string>
+      </property>
      </widget>
     </widget>
     <widget class="QWidget" name="tab_2">
@@ -691,30 +733,13 @@ color: rgb(233, 185, 110);</string>
      <zorder>tableWidget</zorder>
     </widget>
    </widget>
-   <widget class="QPushButton" name="pushButton_exit">
-    <property name="geometry">
-     <rect>
-      <x>640</x>
-      <y>520</y>
-      <width>131</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">color: rgb(186, 189, 182);
-font-size: 20px;</string>
-    </property>
-    <property name="text">
-     <string>Exit</string>
-    </property>
-   </widget>
    <widget class="QWidget" name="verticalLayoutWidget_2">
     <property name="geometry">
      <rect>
-      <x>170</x>
-      <y>40</y>
+      <x>180</x>
+      <y>-1</y>
       <width>160</width>
-      <height>80</height>
+      <height>71</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout">
@@ -748,71 +773,6 @@ color: rgb(211, 215, 207);</string>
       </widget>
      </item>
     </layout>
-   </widget>
-   <widget class="QGroupBox" name="groupBox">
-    <property name="geometry">
-     <rect>
-      <x>340</x>
-      <y>10</y>
-      <width>271</width>
-      <height>101</height>
-     </rect>
-    </property>
-    <property name="title">
-     <string>Where to start?</string>
-    </property>
-    <widget class="QWidget" name="verticalLayoutWidget_4">
-     <property name="geometry">
-      <rect>
-       <x>0</x>
-       <y>20</y>
-       <width>271</width>
-       <height>81</height>
-      </rect>
-     </property>
-     <layout class="QVBoxLayout" name="verticalLayout_6">
-      <item>
-       <widget class="QLabel" name="label_last_position">
-        <property name="text">
-         <string>last word position - </string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QRadioButton" name="radio_from_the_beginning">
-        <property name="styleSheet">
-         <string notr="true">background-color: rgb(0, 0, 0);
-color: rgb(211, 215, 207);
-text-align: center;</string>
-        </property>
-        <property name="text">
-         <string>from the very beginning</string>
-        </property>
-        <property name="checked">
-         <bool>true</bool>
-        </property>
-        <attribute name="buttonGroup">
-         <string notr="true">buttonGroup_select_position</string>
-        </attribute>
-       </widget>
-      </item>
-      <item>
-       <widget class="QRadioButton" name="radio_from_saved_position">
-        <property name="styleSheet">
-         <string notr="true">background-color: rgb(0, 0, 0);
-color: rgb(211, 215, 207);
-text-align: center;</string>
-        </property>
-        <property name="text">
-         <string>from a saved position</string>
-        </property>
-        <attribute name="buttonGroup">
-         <string notr="true">buttonGroup_select_position</string>
-        </attribute>
-       </widget>
-      </item>
-     </layout>
-    </widget>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -1024,6 +984,5 @@ text-align: center;</string>
  </connections>
  <buttongroups>
   <buttongroup name="buttonGroup_writeMode"/>
-  <buttongroup name="buttonGroup_select_position"/>
  </buttongroups>
 </ui>
