@@ -20,7 +20,7 @@ class Ui_MainWindow(object):
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.tabWidget = QtWidgets.QTabWidget(self.centralwidget)
-        self.tabWidget.setGeometry(QtCore.QRect(30, 90, 941, 451))
+        self.tabWidget.setGeometry(QtCore.QRect(30, 40, 941, 561))
         self.tabWidget.setStyleSheet("background-color: rgb(186, 189, 182);")
         self.tabWidget.setObjectName("tabWidget")
         self.tab = QtWidgets.QWidget()
@@ -32,7 +32,7 @@ class Ui_MainWindow(object):
         self.label.setScaledContents(True)
         self.label.setObjectName("label")
         self.horizontalLayoutWidget_2 = QtWidgets.QWidget(self.tab)
-        self.horizontalLayoutWidget_2.setGeometry(QtCore.QRect(30, 190, 881, 71))
+        self.horizontalLayoutWidget_2.setGeometry(QtCore.QRect(40, 270, 881, 71))
         self.horizontalLayoutWidget_2.setObjectName("horizontalLayoutWidget_2")
         self.horizontalLayout_Words = QtWidgets.QHBoxLayout(self.horizontalLayoutWidget_2)
         self.horizontalLayout_Words.setContentsMargins(0, 0, 0, 0)
@@ -60,11 +60,24 @@ class Ui_MainWindow(object):
         self.lineEdit_translation.setObjectName("lineEdit_translation")
         self.horizontalLayout_Words.addWidget(self.lineEdit_translation)
         self.verticalLayoutWidget = QtWidgets.QWidget(self.tab)
-        self.verticalLayoutWidget.setGeometry(QtCore.QRect(740, 10, 171, 138))
+        self.verticalLayoutWidget.setGeometry(QtCore.QRect(740, 20, 171, 170))
         self.verticalLayoutWidget.setObjectName("verticalLayoutWidget")
         self.verticalLayout_3 = QtWidgets.QVBoxLayout(self.verticalLayoutWidget)
         self.verticalLayout_3.setContentsMargins(0, 0, 0, 0)
         self.verticalLayout_3.setObjectName("verticalLayout_3")
+        self.pushButton_browse = QtWidgets.QPushButton(self.verticalLayoutWidget)
+        self.pushButton_browse.setCursor(QtGui.QCursor(QtCore.Qt.OpenHandCursor))
+        self.pushButton_browse.setAccessibleDescription("")
+        self.pushButton_browse.setStyleSheet("background-color: rgb(238, 238, 236);\n"
+"font: 57 12pt \"Ubuntu\";\n"
+"font-weight: bold;\n"
+"color: rgb(136, 138, 133);\n"
+"\n"
+"QPushButton::hover {\n"
+"    color: rgb(254, 0, 0);\n"
+"}")
+        self.pushButton_browse.setObjectName("pushButton_browse")
+        self.verticalLayout_3.addWidget(self.pushButton_browse)
         self.label_dirname = QtWidgets.QLabel(self.verticalLayoutWidget)
         self.label_dirname.setAlignment(QtCore.Qt.AlignCenter)
         self.label_dirname.setObjectName("label_dirname")
@@ -119,7 +132,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout.addWidget(self.label_current_index)
         self.verticalLayout_3.addLayout(self.horizontalLayout)
         self.gridLayoutWidget = QtWidgets.QWidget(self.tab)
-        self.gridLayoutWidget.setGeometry(QtCore.QRect(30, 269, 881, 111))
+        self.gridLayoutWidget.setGeometry(QtCore.QRect(40, 350, 881, 111))
         self.gridLayoutWidget.setObjectName("gridLayoutWidget")
         self.gridLayout = QtWidgets.QGridLayout(self.gridLayoutWidget)
         self.gridLayout.setContentsMargins(0, 0, 0, 0)
@@ -178,27 +191,16 @@ class Ui_MainWindow(object):
 "}")
         self.pushButton_clear_translation.setObjectName("pushButton_clear_translation")
         self.gridLayout.addWidget(self.pushButton_clear_translation, 1, 1, 1, 1)
-        self.pushButton_browse = QtWidgets.QPushButton(self.tab)
-        self.pushButton_browse.setGeometry(QtCore.QRect(590, 10, 131, 41))
-        self.pushButton_browse.setCursor(QtGui.QCursor(QtCore.Qt.OpenHandCursor))
-        self.pushButton_browse.setAccessibleDescription("")
-        self.pushButton_browse.setStyleSheet("background-color: rgb(238, 238, 236);\n"
-"font: 57 12pt \"Ubuntu\";\n"
-"font-weight: bold;\n"
-"color: rgb(136, 138, 133);\n"
-"\n"
-"QPushButton::hover {\n"
-"    color: rgb(254, 0, 0);\n"
-"}")
-        self.pushButton_browse.setObjectName("pushButton_browse")
         self.label_Image = QtWidgets.QLabel(self.tab)
-        self.label_Image.setGeometry(QtCore.QRect(30, 20, 271, 151))
+        self.label_Image.setGeometry(QtCore.QRect(50, 20, 401, 231))
+        self.label_Image.setStyleSheet("border: 2px red solid;\n"
+"")
         self.label_Image.setText("")
         self.label_Image.setPixmap(QtGui.QPixmap("../../../Загрузки/greedy.jpg"))
         self.label_Image.setScaledContents(True)
         self.label_Image.setObjectName("label_Image")
         self.verticalLayoutWidget_5 = QtWidgets.QWidget(self.tab)
-        self.verticalLayoutWidget_5.setGeometry(QtCore.QRect(340, 10, 231, 161))
+        self.verticalLayoutWidget_5.setGeometry(QtCore.QRect(490, 20, 231, 171))
         self.verticalLayoutWidget_5.setObjectName("verticalLayoutWidget_5")
         self.verticalLayout_4 = QtWidgets.QVBoxLayout(self.verticalLayoutWidget_5)
         self.verticalLayout_4.setContentsMargins(0, 0, 0, 0)
@@ -216,6 +218,8 @@ class Ui_MainWindow(object):
 "}")
         self.pushButton_get_new_word.setObjectName("pushButton_get_new_word")
         self.verticalLayout_4.addWidget(self.pushButton_get_new_word)
+        self.horizontalLayout_2 = QtWidgets.QHBoxLayout()
+        self.horizontalLayout_2.setObjectName("horizontalLayout_2")
         self.pushButton_on_top = QtWidgets.QPushButton(self.verticalLayoutWidget_5)
         self.pushButton_on_top.setCursor(QtGui.QCursor(QtCore.Qt.OpenHandCursor))
         self.pushButton_on_top.setAccessibleDescription("")
@@ -228,7 +232,21 @@ class Ui_MainWindow(object):
 "    color: rgb(254, 0, 0);\n"
 "}")
         self.pushButton_on_top.setObjectName("pushButton_on_top")
-        self.verticalLayout_4.addWidget(self.pushButton_on_top)
+        self.horizontalLayout_2.addWidget(self.pushButton_on_top)
+        self.pushButton_save = QtWidgets.QPushButton(self.verticalLayoutWidget_5)
+        self.pushButton_save.setCursor(QtGui.QCursor(QtCore.Qt.OpenHandCursor))
+        self.pushButton_save.setAccessibleDescription("")
+        self.pushButton_save.setStyleSheet("background-color: rgb(46, 52, 54);\n"
+"color: rgb(233, 185, 110);\n"
+"font: 50 13pt \"Ubuntu\";\n"
+"font-weight: bold;\n"
+"\n"
+"pushButton_get_word::hover {\n"
+"    color: rgb(254, 0, 0);\n"
+"}")
+        self.pushButton_save.setObjectName("pushButton_save")
+        self.horizontalLayout_2.addWidget(self.pushButton_save)
+        self.verticalLayout_4.addLayout(self.horizontalLayout_2)
         self.pushButton_prev_word = QtWidgets.QPushButton(self.verticalLayoutWidget_5)
         self.pushButton_prev_word.setCursor(QtGui.QCursor(QtCore.Qt.OpenHandCursor))
         self.pushButton_prev_word.setAccessibleDescription("")
@@ -242,6 +260,11 @@ class Ui_MainWindow(object):
 "}")
         self.pushButton_prev_word.setObjectName("pushButton_prev_word")
         self.verticalLayout_4.addWidget(self.pushButton_prev_word)
+        self.pushButton_exit = QtWidgets.QPushButton(self.tab)
+        self.pushButton_exit.setGeometry(QtCore.QRect(780, 470, 131, 41))
+        self.pushButton_exit.setStyleSheet("color: rgb(0, 0, 0);\n"
+"font-size: 20px;")
+        self.pushButton_exit.setObjectName("pushButton_exit")
         self.tabWidget.addTab(self.tab, "")
         self.tab_2 = QtWidgets.QWidget()
         self.tab_2.setObjectName("tab_2")
@@ -330,13 +353,8 @@ class Ui_MainWindow(object):
         self.verticalLayoutWidget_3.raise_()
         self.tableWidget.raise_()
         self.tabWidget.addTab(self.tab_2, "")
-        self.pushButton_exit = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton_exit.setGeometry(QtCore.QRect(640, 520, 131, 41))
-        self.pushButton_exit.setStyleSheet("color: rgb(186, 189, 182);\n"
-"font-size: 20px;")
-        self.pushButton_exit.setObjectName("pushButton_exit")
         self.verticalLayoutWidget_2 = QtWidgets.QWidget(self.centralwidget)
-        self.verticalLayoutWidget_2.setGeometry(QtCore.QRect(170, 40, 160, 80))
+        self.verticalLayoutWidget_2.setGeometry(QtCore.QRect(180, -1, 160, 71))
         self.verticalLayoutWidget_2.setObjectName("verticalLayoutWidget_2")
         self.verticalLayout = QtWidgets.QVBoxLayout(self.verticalLayoutWidget_2)
         self.verticalLayout.setContentsMargins(0, 0, 0, 0)
@@ -354,35 +372,6 @@ class Ui_MainWindow(object):
         self.checkBox_Translation.setChecked(True)
         self.checkBox_Translation.setObjectName("checkBox_Translation")
         self.verticalLayout.addWidget(self.checkBox_Translation)
-        self.groupBox = QtWidgets.QGroupBox(self.centralwidget)
-        self.groupBox.setGeometry(QtCore.QRect(340, 10, 271, 101))
-        self.groupBox.setObjectName("groupBox")
-        self.verticalLayoutWidget_4 = QtWidgets.QWidget(self.groupBox)
-        self.verticalLayoutWidget_4.setGeometry(QtCore.QRect(0, 20, 271, 81))
-        self.verticalLayoutWidget_4.setObjectName("verticalLayoutWidget_4")
-        self.verticalLayout_6 = QtWidgets.QVBoxLayout(self.verticalLayoutWidget_4)
-        self.verticalLayout_6.setContentsMargins(0, 0, 0, 0)
-        self.verticalLayout_6.setObjectName("verticalLayout_6")
-        self.label_last_position = QtWidgets.QLabel(self.verticalLayoutWidget_4)
-        self.label_last_position.setObjectName("label_last_position")
-        self.verticalLayout_6.addWidget(self.label_last_position)
-        self.radio_from_the_beginning = QtWidgets.QRadioButton(self.verticalLayoutWidget_4)
-        self.radio_from_the_beginning.setStyleSheet("background-color: rgb(0, 0, 0);\n"
-"color: rgb(211, 215, 207);\n"
-"text-align: center;")
-        self.radio_from_the_beginning.setChecked(True)
-        self.radio_from_the_beginning.setObjectName("radio_from_the_beginning")
-        self.buttonGroup_select_position = QtWidgets.QButtonGroup(MainWindow)
-        self.buttonGroup_select_position.setObjectName("buttonGroup_select_position")
-        self.buttonGroup_select_position.addButton(self.radio_from_the_beginning)
-        self.verticalLayout_6.addWidget(self.radio_from_the_beginning)
-        self.radio_from_saved_position = QtWidgets.QRadioButton(self.verticalLayoutWidget_4)
-        self.radio_from_saved_position.setStyleSheet("background-color: rgb(0, 0, 0);\n"
-"color: rgb(211, 215, 207);\n"
-"text-align: center;")
-        self.radio_from_saved_position.setObjectName("radio_from_saved_position")
-        self.buttonGroup_select_position.addButton(self.radio_from_saved_position)
-        self.verticalLayout_6.addWidget(self.radio_from_saved_position)
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 990, 22))
@@ -411,6 +400,9 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
+        self.pushButton_browse.setToolTip(_translate("MainWindow", "<html><head/><body><p><br/></p></body></html>"))
+        self.pushButton_browse.setWhatsThis(_translate("MainWindow", "<html><head/><body><p>lll</p></body></html>"))
+        self.pushButton_browse.setText(_translate("MainWindow", "Browse"))
         self.label_dirname.setText(_translate("MainWindow", "Directory"))
         self.comboBox_ToLearn.setItemText(0, _translate("MainWindow", "terms"))
         self.comboBox_ToLearn.setItemText(1, _translate("MainWindow", "dates"))
@@ -421,14 +413,13 @@ class Ui_MainWindow(object):
         self.pushButton_get_word.setText(_translate("MainWindow", "Get a word"))
         self.pushButton_clear_word.setText(_translate("MainWindow", "Clear a word"))
         self.pushButton_clear_translation.setText(_translate("MainWindow", "Clear the translation"))
-        self.pushButton_browse.setToolTip(_translate("MainWindow", "<html><head/><body><p><br/></p></body></html>"))
-        self.pushButton_browse.setWhatsThis(_translate("MainWindow", "<html><head/><body><p>lll</p></body></html>"))
-        self.pushButton_browse.setText(_translate("MainWindow", "Browse"))
         self.pushButton_get_new_word.setToolTip(_translate("MainWindow", "<html><head/><body><p><br/></p></body></html>"))
         self.pushButton_get_new_word.setWhatsThis(_translate("MainWindow", "<html><head/><body><p>lll</p></body></html>"))
         self.pushButton_get_new_word.setText(_translate("MainWindow", "Get a new word"))
         self.pushButton_on_top.setText(_translate("MainWindow", "On top"))
+        self.pushButton_save.setText(_translate("MainWindow", "Save"))
         self.pushButton_prev_word.setText(_translate("MainWindow", "Previous word"))
+        self.pushButton_exit.setText(_translate("MainWindow", "Exit"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), _translate("MainWindow", "LEARN"))
         self.pushButton_write.setText(_translate("MainWindow", "Записать слово"))
         self.label_writeTip.setText(_translate("MainWindow", "Words are supposed to be : word-translation"))
@@ -454,10 +445,5 @@ class Ui_MainWindow(object):
         item.setText(_translate("MainWindow", "1"))
         self.tableWidget.setSortingEnabled(__sortingEnabled)
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), _translate("MainWindow", "WRITE"))
-        self.pushButton_exit.setText(_translate("MainWindow", "Exit"))
         self.checkBox_Word.setText(_translate("MainWindow", "Word"))
         self.checkBox_Translation.setText(_translate("MainWindow", "Translation"))
-        self.groupBox.setTitle(_translate("MainWindow", "Where to start?"))
-        self.label_last_position.setText(_translate("MainWindow", "last word position - "))
-        self.radio_from_the_beginning.setText(_translate("MainWindow", "from the very beginning"))
-        self.radio_from_saved_position.setText(_translate("MainWindow", "from a saved position"))
