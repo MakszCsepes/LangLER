@@ -158,11 +158,6 @@ class MyWindow(QtWidgets.QMainWindow):
         # display number of elements in the file
         self.ui.label_words_number.setText(str(len(self._file_lines)))
 
-        # display the last position
-        label_text = self.ui.label_last_position.text()
-        label_text += str(self._file_lines_meta[DICT_LAST_LINE_i])
-        self.ui.label_last_position.setText(label_text)
-
         # display word and a relevant translation
         self._cur_line = self._file_lines[self._file_lines_index]
         self.display_word_line()
@@ -277,15 +272,6 @@ class MyWindow(QtWidgets.QMainWindow):
             self.ui.pushButton_write.setText("Записать одно слово")
         else:
             self.ui.pushButton_write.setText("Записать слова")
-
-    def select_beginning_position(self):
-        if self.ui.radio_from_the_beginning.isChecked():
-            self._file_lines_index = INITIAL_INDEX
-        elif self.ui.radio_from_saved_position.isChecked():
-            self._file_lines_index = self._file_lines_meta[DICT_LAST_LINE_i]
-
-        self.update_word_display()
-        self.define_progress()
 
     def change_apply_button(self):
         if self._comboBox_ToLearn_current_index == self.ui.comboBox_ToLearn.currentIndex():
