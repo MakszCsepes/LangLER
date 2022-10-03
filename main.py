@@ -31,7 +31,8 @@ class MyWindow(QtWidgets.QMainWindow):
     _file_lines_meta = {}  # metadata for lines in file
     _file_lines_index = INITIAL_INDEX
     _cur_line = ""  # current line in progress
-    _lines_on_top = []  # lines to drop on top of the dict
+    _lines_on_top = []  # lines to drop on the very top of the dict so they will appear again FIRST next time
+    _lines_to_save = []  # lines to save so they will appear again next time but after `_lines_on_top`
 
     _progress = 0  # total progress in percentage
     _progress_step = 0
@@ -61,11 +62,11 @@ class MyWindow(QtWidgets.QMainWindow):
         self.ui.pushButton_browse.clicked.connect(self.browse)
         self.ui.pushButton_browse.clicked.connect(self.apply)
         self.ui.pushButton_on_top.clicked.connect(self.push_on_top)
+        self.ui.pushButton_save.clicked.connect(self.push_to_save_line)
 
         # Button groups organized
         self.ui.buttonGroup_writeMode.buttonClicked.connect(self.change_text_in_write_page)
         self.ui.radioOneWord_towrite.setChecked(True)
-        self.ui.buttonGroup_select_position.buttonClicked.connect(self.select_beginning_position)
 
         # ComboBox organized
         self.ui.comboBox_ToLearn.currentIndexChanged.connect(self.change_apply_button)
@@ -120,6 +121,7 @@ class MyWindow(QtWidgets.QMainWindow):
         self._file_lines_index = INITIAL_INDEX
         self._cur_line = ""
         self._lines_on_top.clear()
+        self._lines_to_save.clear()
 
         self._progress = 0
         self._progress_step = 0
@@ -174,9 +176,19 @@ class MyWindow(QtWidgets.QMainWindow):
             self._b_opened_new_dict = True
 
     def save_current_dict(self, filename):
-        self.save_on_top_elements()
+        # in order not to get duplicates
 
-        # place metadata (e.g dictname, separator, current position e.t.c)
+        # cut off `to-save` elements from `on_top` list
+        cut_off_list_from_list(self._lines_to_save, self._lines_on_top)
+        # cut off `to-save` elements from the main list
+        cut_off_list_from_list(self._file_lines, self._lines_to_save)
+        # cut off `on_top` elements from the main list
+        cut_off_list_from_list(self._file_lines, self._lines_on_top)
+
+        self.write_saved_elements()
+        self.write_on_top_elements()
+
+        # place metadata (e.g a dictname, a separator, current position e.t.c)
         # onto the very first line of the file
         self.save_dict_metadata()
 
@@ -214,21 +226,25 @@ class MyWindow(QtWidgets.QMainWindow):
         # push the string onto the top of the list (that is aka dict)
         self._file_lines.insert(0, metadata_str)
 
-    def save_on_top_elements(self):
+    def write_saved_elements(self):
         cur_line = self._cur_line
 
         # there is no need to save the very last line
         # because it will definitely be the first line to appear next time
         # so it's implicitly saved
-        if cur_line in self._lines_on_top:
-            self._lines_on_top.remove(cur_line)
-
-        # cut off on_top elements from the list
-        for on_top_elem in self._lines_on_top:
-            self._file_lines.remove(on_top_elem)
-
+        if cur_line in self._lines_to_save:
+            self._lines_to_save.remove(cur_line)
 
         cur_line_index = self._file_lines.index(cur_line)
+
+        # push each `to-save` element onto the beginning of the list (aka dict)
+        for elem_to_save in self._lines_to_save:
+            self._file_lines.insert(cur_line_index + 1, elem_to_save)
+
+        self._file_lines_index = cur_line_index
+
+    def write_on_top_elements(self):
+        cur_line_index = self._file_lines_index
         # push each on_top element onto the beginning of the list (aka dict)
         for on_top_elem in self._lines_on_top:
             self._file_lines.insert(cur_line_index + 1, on_top_elem)
@@ -238,6 +254,11 @@ class MyWindow(QtWidgets.QMainWindow):
     def push_on_top(self):
         if self._cur_line not in self._lines_on_top:
             self._lines_on_top.insert(0, self._cur_line)
+
+    # add current line to `saved lines`
+    def push_to_save_line(self):
+        if self._cur_line not in self._lines_to_save:
+            self._lines_to_save.insert(0, self._cur_line)
 
     def remove_elements_from_list(self):
         for line in self._file_lines:
